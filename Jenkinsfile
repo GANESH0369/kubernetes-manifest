@@ -1,23 +1,17 @@
-
-
-
-
 pipeline {
     agent any
-
+ 
     environment {
-        GIT_USERNAME = credentials('github').username
-        GIT_PASSWORD = credentials('github').password
-        DOCKERTAG = env.BUILD_NUMBER
+        DOCKERTAG = "latest" // Add your default DOCKERTAG here
     }
-
+ 
     stages {
         stage('Clone repository') {
             steps {
                 checkout scm
             }
         }
-
+ 
         stage('Update GIT') {
             steps {
                 script {
@@ -38,4 +32,3 @@ pipeline {
         }
     }
 }
-
